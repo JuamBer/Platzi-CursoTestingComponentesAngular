@@ -5,7 +5,7 @@ import { Person } from 'src/app/models/person.model';
 
 import { PersonComponent } from './person.component';
 
-fdescribe('PersonComponent', () => {
+describe('PersonComponent', () => {
   let component: PersonComponent;
   let fixture: ComponentFixture<PersonComponent>;
 
@@ -40,7 +40,7 @@ fdescribe('PersonComponent', () => {
 
   it('should have <p> with `Mi altura es ${component.person.height}` By.css', () => {
     const personDebug: DebugElement = fixture.debugElement;
-    const pDebug: DebugElement = personDebug.query(By.css('p'));
+    const pDebug: DebugElement = fixture.debugElement.query(By.css('p'));
     const pElement: HTMLElement = pDebug.nativeElement;
     expect(pElement?.textContent).toEqual(
       `Mi altura es ${component.person.height}`
@@ -63,5 +63,28 @@ fdescribe('PersonComponent', () => {
     const h3Debug: DebugElement = personDebug.query(By.css('h3'));
     const h3: HTMLElement = h3Debug.nativeElement;
     expect(h3?.textContent).toContain(component.person.name);
+  });
+
+  it('should display a text with IMC when call calcIMC()', () => {
+    component.person = new Person('Juan', 'Saez', 30, 120, 1.65);
+    const button: HTMLElement = fixture.debugElement.query(
+      By.css('button')
+    ).nativeElement;
+    component.calcIMC();
+    fixture.detectChanges();
+    expect(button?.textContent).toContain('overweight level 3');
+  });
+
+  it('should display a text with IMC when do click', () => {
+    component.person = new Person('Juan', 'Saez', 30, 120, 1.65);
+    const buttonDebug: DebugElement = fixture.debugElement.query(
+      By.css('button')
+    );
+    const button: HTMLElement = fixture.debugElement.query(
+      By.css('button')
+    ).nativeElement;
+    buttonDebug.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    expect(button?.textContent).toContain('overweight level 3');
   });
 });

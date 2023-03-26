@@ -87,4 +87,18 @@ describe('PersonComponent', () => {
     fixture.detectChanges();
     expect(button?.textContent).toContain('overweight level 3');
   });
+
+  it('should raise selected event when do click', () => {
+    // Arrange
+    const expectedPerson = new Person('Juan', 'Perez', 30, 120, 1.65);
+    component.person = expectedPerson;
+    const buttonDe = fixture.debugElement.query(By.css('button.btn-choose'));
+    let selectedPerson: Person | undefined;
+    component.onSelected.subscribe((person) => (selectedPerson = person));
+    // Act
+    buttonDe.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    // Assert
+    expect(selectedPerson).toEqual(expectedPerson);
+  });
 });

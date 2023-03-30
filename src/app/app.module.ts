@@ -10,6 +10,7 @@ import { PersonComponent } from './components/person/person.component';
 import { PicoPreviewComponent } from './components/pico-preview/pico-preview.component';
 import { ProductsComponent } from './components/products/products.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     PicoPreviewComponent,
     PersonComponent,
     PeopleComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

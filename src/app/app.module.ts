@@ -13,6 +13,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HighligthDirective } from './directives/highligth.directive';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     ProductComponent,
     OthersComponent,
     HighligthDirective,
+    ReversePipe,
   ],
   imports: [
     FormsModule,

@@ -39,4 +39,15 @@ describe('ProductsComponent', () => {
   it('should call getAll', () => {
     expect(productsService.getAll).toHaveBeenCalled();
   });
+
+  describe('test for getAllProducts', () => {
+    it('should return a product list', () => {
+      const productsMock = generateManyProducts(10);
+      const count = component.products.length;
+      productsService.getAll.and.returnValue(of(productsMock));
+      component.getAllProducts();
+      fixture.detectChanges();
+      expect(component.products.length).toEqual(productsMock.length + count);
+    });
+  });
 });
